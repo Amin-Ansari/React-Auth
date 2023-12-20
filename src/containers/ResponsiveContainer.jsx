@@ -3,9 +3,9 @@ import ContainerFluid from "./ContainerFluid";
 import Container from "./Container";
 
 const ResponsiveContainer = (props) => {
-  const { children } = props;
+  const { children, className } = props;
   return (
-    <ContainerFluid>
+    <ContainerFluid className={className}>
       <Container>{children}</Container>
     </ContainerFluid>
   );

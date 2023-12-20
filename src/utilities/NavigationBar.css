@@ -1,0 +1,40 @@
+.nav-bar {
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+.nav-list {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+.nav-item {
+  margin: 0rem 0.5rem;
+}
+.nav-item > a {
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+.off-canvas-toggle-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  color: #f2436d;
+  font-size: 1.4rem;
+  padding: 0.4rem 0.7rem;
+}
+
+@media all and (min-width: 768px) {
+  .nav-bar {
+    display: flex;
+  }
+  .off-canvas-toggle-button {
+    display: none;
+  }
+}

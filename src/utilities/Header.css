@@ -1,0 +1,16 @@
+.header {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  color: #ffff;
+  height: calc(4rem + 0.8vw);
+  grid-column: span 12;
+}
+
+@media all and (min-width: 1400px) {
+  .header {
+    height: 95px;
+  }
+}

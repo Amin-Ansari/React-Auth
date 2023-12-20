@@ -31,12 +31,8 @@ a:hover {
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
   background-color: transparent !important;
+  scroll-behavior: smooth;
 }
 
 h1 {
@@ -56,11 +52,15 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #f2436d;
 }
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+.header-background-color {
+  background-color: #f2436d;
 }
 
 @media (prefers-color-scheme: light) {

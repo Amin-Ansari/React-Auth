@@ -10,7 +10,7 @@ import LoginPage from "../pages/LoginPage";
 
 //Utilities like Css files
 
-function App({ children }) {
+function App() {
   const routes = createBrowserRouter([
     {
       path: "/",
@@ -22,7 +22,7 @@ function App({ children }) {
     }
   ]);
 
-  return <></>;
+  return <RouterProvider router={routes}></RouterProvider>;
 }
 
 export default App;
