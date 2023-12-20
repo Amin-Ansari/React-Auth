@@ -10,6 +10,8 @@ const RootPage = () => {
     <>
       <ResponsiveContainer className="header-background-color">
         <Header />
+      </ResponsiveContainer>
+      <ResponsiveContainer>
         <Outlet />
       </ResponsiveContainer>
     </>

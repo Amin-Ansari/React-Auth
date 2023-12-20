@@ -1,0 +1,5 @@
+.home-page-welcome-headline {
+  margin: 3rem 0rem;
+  text-align: center;
+  grid-column: span 12;
+}

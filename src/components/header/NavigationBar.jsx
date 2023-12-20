@@ -8,7 +8,6 @@ import { TiThMenu } from "react-icons/ti";
 import "../../utilities/NavigationBar.css";
 
 const NavigationBar = (props) => {
-  console.log(props);
   return (
     <>
       <nav className="nav-bar">
