@@ -13,7 +13,9 @@ const NavigationBar = (props) => {
       <nav className="nav-bar">
         <ul className="nav-list">
           <li className="nav-item">
-            <NavLink to={"/"}>Home</NavLink>
+            <NavLink to={"/"} end>
+              Home
+            </NavLink>
           </li>
           <li className="nav-item">
             <NavLink to={"login-signup"}>Login</NavLink>
