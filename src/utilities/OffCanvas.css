@@ -1,0 +1,80 @@
+.off-canvas-container {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  display: block;
+}
+.nav-container {
+  width: min(100%, 450px);
+  height: 100%;
+  background-color: #fff;
+  transform: translateX(-100%);
+  animation: offCanvasAnimation 0.5s ease 0s 1 normal forwards;
+}
+.off-canvas-navigation {
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+}
+.off-canvas-nav-links {
+  width: max-content;
+}
+.off-canvas-nav-links:nth-last-child(1) {
+  margin: 1rem 0rem;
+}
+.off-canvas-nav-links > a {
+  color: #000;
+  transition: all 0.3s;
+  font-weight: 600;
+}
+
+.off-canvas-nav-links:hover > a {
+  color: #f2436d;
+}
+.close-off-canvas-button {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0rem;
+  width: 40px;
+  background-color: #000;
+  color: #fff;
+  height: 40px;
+  font-size: 1.1rem;
+}
+@media all and (min-width: 768px) {
+  .off-canvas-container {
+    display: none;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .nav-container {
+    background-color: #242424;
+  }
+  .off-canvas-nav-links > a {
+    color: #fff;
+    transition: all 0.3s;
+    font-weight: 600;
+  }
+  .close-off-canvas-button {
+    background-color: #fff;
+    color: #000;
+  }
+}
+
+@keyframes offCanvasAnimation {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}

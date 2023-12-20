@@ -7,7 +7,8 @@ import { TiThMenu } from "react-icons/ti";
 //Utileties
 import "../../utilities/NavigationBar.css";
 
-const NavigationBar = () => {
+const NavigationBar = (props) => {
+  console.log(props);
   return (
     <>
       <nav className="nav-bar">
@@ -20,7 +21,10 @@ const NavigationBar = () => {
           </li>
         </ul>
       </nav>
-      <button className="off-canvas-toggle-button">
+      <button
+        className="off-canvas-toggle-button"
+        onClick={() => props.onVisibilityToggle()}
+      >
         <TiThMenu />
       </button>
     </>
