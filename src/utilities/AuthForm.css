@@ -1,0 +1,51 @@
+.form-title {
+  margin-bottom: 1.6rem;
+  font-size: 2rem;
+}
+.auth-form {
+  grid-column: span 12;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  background-color: #f2436d;
+  width: min(100%, 650px);
+  margin: 7rem 0rem 0rem;
+  border-radius: 0.9rem;
+  padding: 1rem 1.2rem;
+}
+.form-label {
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0rem 0rem 0.2rem;
+}
+.auth-form-input {
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.5rem 0.7rem;
+  border-radius: 0.4rem;
+  font-size: 1.1rem;
+  background-color: #f7edef;
+  outline: none;
+  border: none;
+  color: #000000;
+}
+.submit-input,
+.form-type-change-button {
+  cursor: pointer;
+}
+.submit-input {
+  background-color: #fff;
+  color: #000000;
+  padding: 0.5rem 1.4rem;
+  font-size: 1.1rem;
+  border: none;
+  outline: none;
+  border-radius: 0.2rem;
+  margin: 0rem 0rem 0.4rem;
+}
+.form-type-change-button {
+  background-color: transparent;
+  color: #fff;
+  font-size: 1.1rem;
+}

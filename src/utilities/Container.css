@@ -2,4 +2,5 @@
   width: min(100%, 1320px);
   display: grid;
   grid-template: auto / repeat(12, 1fr);
+  justify-items: center;
 }
