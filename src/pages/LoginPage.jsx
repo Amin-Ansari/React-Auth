@@ -5,12 +5,16 @@ const LoginPage = () => {
   const [formType, setTheFormType] = useState("LOGIN");
 
   function changeTheFormType() {
-    setTheFormType((state) => (state === "LOGIN" ? "SIGN UP" : "LOGIN"));
+    setTheFormType((state) => (state === "LOGIN" ? "SIGNUP" : "LOGIN"));
   }
 
   return (
     <>
-      <AuthForm onFormTypeChange={changeTheFormType} formType={formType} />
+      <AuthForm
+        onFormTypeChange={changeTheFormType}
+        formType={formType}
+        formMethod="POST"
+      />
     </>
   );
 };
