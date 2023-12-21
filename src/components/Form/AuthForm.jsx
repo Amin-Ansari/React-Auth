@@ -1,52 +1,63 @@
 //React-Router
-import { Form, json, useActionData } from "react-router-dom";
-
+import { Form, json, useActionData, useNavigation } from "react-router-dom";
 //Utilities
 import "../../utilities/AuthForm.css";
 
 const AuthForm = (props) => {
   const { formMethod, formType, onFormTypeChange } = props;
 
+  const formNavigation = useNavigation();
+
   let type = formType === "LOGIN" ? "Login" : "Sign up";
 
   const actionData = useActionData();
 
   return (
-    <Form className="auth-form" method={formMethod}>
-      <h2 className="form-title">{type}</h2>
-      <label className="form-label" htmlFor="#email-input">
-        Your Email
-      </label>
-      <input
-        type="email"
-        className="auth-form-input"
-        name="email"
-        id="email-input"
-      ></input>
-      <label className="form-label" htmlFor="#password-input">
-        Your Password
-      </label>
-      <input
-        type="password"
-        className="auth-form-input"
-        name="password"
-        id="password-input"
-      ></input>
-      <input
-        type={"submit"}
-        name="submit"
-        className="submit-input"
-        value={type}
-      ></input>
-      <button
-        type="button"
-        className="form-type-change-button"
-        onClick={() => onFormTypeChange()}
-      >
-        {formType === "LOGIN" && "Create new account"}
-        {formType === "SIGNUP" && "Already have and account?"}
-      </button>
-    </Form>
+    <>
+      {formNavigation.state === "idle" && (
+        <Form className="auth-form" method={formMethod}>
+          <h2 className="form-title">{type}</h2>
+          <label className="form-label" htmlFor="#email-input">
+            Your Email
+          </label>
+          <input
+            type="email"
+            className="auth-form-input"
+            name="email"
+            id="email-input"
+          ></input>
+          <label className="form-label" htmlFor="#password-input">
+            Your Password
+          </label>
+          <input
+            type="password"
+            className="auth-form-input"
+            name="password"
+            id="password-input"
+          ></input>
+          <input
+            type={"submit"}
+            name="submit"
+            className="submit-input"
+            value={type}
+          ></input>
+          <button
+            type="button"
+            className="form-type-change-button"
+            onClick={() => onFormTypeChange()}
+          >
+            {formType === "LOGIN" && "Create new account"}
+            {formType === "SIGNUP" && "Already have and account?"}
+          </button>
+        </Form>
+      )}
+      {formNavigation.state === "submitting" && (
+        <p className="request-pre-load">'Submitting...'</p>
+      )}
+      {formNavigation.state === "loading" && (
+        <p className="request-pre-load">'Loading...'</p>
+      )}
+    </>
   );
 };
 
@@ -84,7 +95,7 @@ export const signUpAction = async ({ request, params }) => {
   if (signUpRequest.ok) {
     return signUpRequest;
   } else {
-    return (
+    return json(
       { message: "The sign up was NOT successful!" },
       { status: signUpRequest.status, statusText: signUpRequest.statusText }
     );

@@ -49,3 +49,11 @@
   color: #fff;
   font-size: 1.1rem;
 }
+
+.request-pre-load {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 2rem;
+  font-weight: 600;
+  grid-column: span 12;
+}
