@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 
 //Router action and loader functions
 import { signUpAction } from "./Form/AuthForm";
+import { chengeThePasswordAction } from "../pages/ProfilePage";
 
 function App() {
   const userAuth = useSelector((state) => state.isUserAuthorized);
@@ -29,7 +30,8 @@ function App() {
         },
         {
           path: "profile",
-          element: userAuth ? <ProfilePage /> : undefined
+          element: userAuth ? <ProfilePage /> : undefined,
+          action: chengeThePasswordAction
         }
       ]
     }

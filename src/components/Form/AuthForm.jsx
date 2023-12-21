@@ -50,8 +50,8 @@ const AuthForm = (props) => {
         }
       }
       if (actionData.idToken) {
+        localStorage.setItem("idToken", JSON.stringify(actionData.idToken));
         dispatch(authActions.authorizeTheUser());
-        dispatch(authActions.setTheIdToken(actionData.idToken));
         navigate("/profile");
       }
     }

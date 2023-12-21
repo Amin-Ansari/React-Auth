@@ -1,8 +1,11 @@
 import { Form } from "react-router-dom";
+import { useSelector } from "react-redux";
 import "../utilities/ProfilePage.css";
 import "../utilities/AuthForm.css";
 
 const ProfilePage = () => {
+  const token = useSelector((state) => state.userIdToken);
+
   return (
     <>
       <h2 className="profile-page-title ">Your User Profile</h2>
@@ -22,3 +25,24 @@ const ProfilePage = () => {
 };
 
 export default ProfilePage;
+
+export const chengeThePasswordAction = async ({ request }) => {
+  const submittedForm = await request.formData();
+
+  const token = localStorage.getItem("idToken");
+
+  const changePasswordRequestdata = {
+    idToken: JSON.parse(token),
+    password: submittedForm.get("new-password"),
+    returnSecureToken: true
+  };
+
+  const url = `https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyDxyJkR3KrdaxvXif_GhRPCP3Wx4RN1ZQs`;
+  const changePasswordRequest = await fetch(url, {
+    method: request.method,
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(changePasswordRequestdata)
+  });
+
+  return changePasswordRequest;
+};
