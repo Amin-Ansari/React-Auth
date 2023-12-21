@@ -1,0 +1,20 @@
+.profile-page-title {
+  grid-column: span 12;
+  text-align: center;
+  margin: 2rem 0rem 0.5rem;
+  font-size: 3rem;
+}
+.change-password-form {
+  margin: 0rem;
+  background-color: transparent;
+}
+
+.pass-change-input {
+  border: 2px solid #f2436d;
+  margin: 0rem;
+}
+
+.change-the-pass-button {
+  margin-top: 2rem;
+  background-color: #f2436d;
+}
