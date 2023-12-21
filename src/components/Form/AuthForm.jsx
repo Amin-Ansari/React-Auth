@@ -1,8 +1,20 @@
+//React stuff
+import { useEffect, useState } from "react";
+
+//React-Redux
+import { useDispatch, useSelector } from "react-redux";
+import { authActions } from "../../redux/slices/AuthSlice";
+
 //Components and other pages
 import Loader from "../Loaders/Loader";
 
 //React-Router
-import { Form, json, useActionData, useNavigation } from "react-router-dom";
+import {
+  Form,
+  useActionData,
+  useNavigation,
+  useNavigate
+} from "react-router-dom";
 
 //Utilities
 import "../../utilities/AuthForm.css";
@@ -10,9 +22,40 @@ import "../../utilities/AuthForm.css";
 const AuthForm = (props) => {
   const { formMethod, formType, onFormTypeChange } = props;
 
+  const [emailError, setEmailError] = useState(null);
+  const [passwordError, setPasswordError] = useState(null);
+
+  const actionData = useActionData();
+
   const formNavigation = useNavigation();
 
   let type = formType === "LOGIN" ? "Login" : "Sign up";
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (actionData) {
+      if (actionData.error) {
+        if (actionData.error & (actionData.error.message === "INVALID_EMAIL")) {
+          setEmailError(
+            type === "Login" ? "The Email does not exist" : "Email is invalid"
+          );
+        } else {
+          setPasswordError(
+            type === "Login"
+              ? "The password is incorrect!"
+              : "Password is invalid, It must be at least 6 charactor"
+          );
+        }
+      }
+      if (actionData.idToken) {
+        dispatch(authActions.authorizeTheUser());
+        dispatch(authActions.setTheIdToken(actionData.idToken));
+        navigate("/profile");
+      }
+    }
+  }, [actionData]);
 
   return (
     <>
@@ -27,6 +70,9 @@ const AuthForm = (props) => {
           name="email"
           id="email-input"
         ></input>
+
+        <p className="invalid-error">{emailError}</p>
+
         <label className="form-label" htmlFor="#password-input">
           Your Password
         </label>
@@ -36,6 +82,9 @@ const AuthForm = (props) => {
           name="password"
           id="password-input"
         ></input>
+
+        <p className="invalid-error">{passwordError}</p>
+
         <input
           type={"submit"}
           name="submit"
@@ -75,7 +124,7 @@ export const signUpAction = async ({ request }) => {
 
   let fullUrl = `${signUpBaseUrl}${key}`;
 
-  if (actionType === "LOGIN") {
+  if (actionType === "Login") {
     fullUrl = `${signInBaseUrl}${key}`;
   }
 
@@ -87,12 +136,5 @@ export const signUpAction = async ({ request }) => {
     body: JSON.stringify(signUpData)
   });
 
-  if (signUpRequest.ok) {
-    return signUpRequest;
-  } else {
-    return json(
-      { message: "The sign up was NOT successful!" },
-      { status: signUpRequest.status, statusText: signUpRequest.statusText }
-    );
-  }
+  return signUpRequest;
 };

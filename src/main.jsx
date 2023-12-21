@@ -2,15 +2,19 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
+import { Provider } from "react-redux";
+import configuredStore from "./redux/store/ConfiguredSlice.js";
+
 //Components
 import App from "./components/App.jsx";
 
 //Utilities like CSS files
 import "./utilities/index.css";
-// import "bootstrap/dist/css/bootstrap.min.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <Provider store={configuredStore}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Provider>
 );

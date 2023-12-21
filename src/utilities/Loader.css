@@ -9,6 +9,11 @@
   align-items: center;
   justify-content: center;
 }
+.invalid-error {
+  text-align: center;
+  color: #fff;
+  margin: 0rem 0rem 0.4rem;
+}
 .wave-container {
   width: 250px;
   height: 60px;

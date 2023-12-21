@@ -29,7 +29,15 @@
   font-size: 1.4rem;
   padding: 0.4rem 0.7rem;
 }
-
+button.nav-item {
+  background-color: transparent;
+  border: 2px solid #fff;
+  transition: all 0.3s;
+}
+button.nav-item:hover {
+  color: #f2436d;
+  background-color: #fff;
+}
 @media all and (min-width: 768px) {
   .nav-bar {
     display: flex;
