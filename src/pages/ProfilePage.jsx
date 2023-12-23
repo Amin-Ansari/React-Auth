@@ -1,11 +1,8 @@
 import { Form } from "react-router-dom";
-import { useSelector } from "react-redux";
 import "../utilities/ProfilePage.css";
 import "../utilities/AuthForm.css";
 
 const ProfilePage = () => {
-  const token = useSelector((state) => state.userIdToken);
-
   return (
     <>
       <h2 className="profile-page-title ">Your User Profile</h2>

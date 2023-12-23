@@ -1,28 +1,21 @@
 //React-Router stuff
-import { NavLink, useNavigate } from "react-router-dom";
-
-//React-Redux
-import { useSelector, useDispatch } from "react-redux";
-import { authActions } from "../../redux/slices/AuthSlice";
+import { NavLink, useRouteLoaderData } from "react-router-dom";
 
 //assets
 import { TiThMenu } from "react-icons/ti";
+
+//Custom hooks
+import useLogout from "../../hooks/useLogout";
 
 //Utileties
 import "../../utilities/NavigationBar.css";
 
 const NavigationBar = (props) => {
-  const userAuthState = useSelector((state) => state.isUserAuthorized);
-  const dispatch = useDispatch();
+  const rootRouterLoaderData = useRouteLoaderData("root-page");
+  const logout = useLogout();
 
-  const navigate = useNavigate();
   const logOutHandler = () => {
-    const conformLogout = window.confirm("Are sure that You want to Log out?");
-
-    if (conformLogout) {
-      dispatch(authActions.unAuthorizeTheUser());
-      navigate("login-signup");
-    }
+    logout();
   };
 
   return (
@@ -34,17 +27,17 @@ const NavigationBar = (props) => {
               Home
             </NavLink>
           </li>
-          {!userAuthState && (
+          {!rootRouterLoaderData && (
             <li className="nav-item">
               <NavLink to={"login-signup"}>Login</NavLink>
             </li>
           )}
-          {userAuthState && (
+          {rootRouterLoaderData && (
             <li className="nav-item">
               <NavLink to={"profile"}>Profile</NavLink>
             </li>
           )}
-          {userAuthState && (
+          {rootRouterLoaderData && (
             <button className="nav-item" onClick={logOutHandler}>
               Log out
             </button>

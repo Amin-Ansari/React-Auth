@@ -13,24 +13,29 @@ import { useSelector } from "react-redux";
 //Router action and loader functions
 import { signUpAction } from "./Form/AuthForm";
 import { chengeThePasswordAction } from "../pages/ProfilePage";
+import { checkAuthForLoginPage } from "../Auth/GetToken";
+import { checkAuthForProfilePage } from "../Auth/GetToken";
+import GetToken from "../Auth/GetToken";
 
 function App() {
-  const userAuth = useSelector((state) => state.isUserAuthorized);
-
   const routes = createBrowserRouter([
     {
       path: "/",
       element: <RootPage />,
+      id: "root-page",
+      loader: GetToken,
       children: [
         { index: true, element: <HomePage /> },
         {
           path: "login-signup",
-          element: !userAuth ? <LoginPage /> : <ProfilePage />,
+          element: <LoginPage />,
+          loader: checkAuthForLoginPage,
           action: signUpAction
         },
         {
           path: "profile",
-          element: userAuth ? <ProfilePage /> : undefined,
+          element: <ProfilePage />,
+          loader: checkAuthForProfilePage,
           action: chengeThePasswordAction
         }
       ]

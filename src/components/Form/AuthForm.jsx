@@ -1,20 +1,11 @@
 //React stuff
 import { useEffect, useState } from "react";
 
-//React-Redux
-import { useDispatch, useSelector } from "react-redux";
-import { authActions } from "../../redux/slices/AuthSlice";
-
 //Components and other pages
 import Loader from "../Loaders/Loader";
 
 //React-Router
-import {
-  Form,
-  useActionData,
-  useNavigation,
-  useNavigate
-} from "react-router-dom";
+import { Form, useActionData, useNavigation, redirect } from "react-router-dom";
 
 //Utilities
 import "../../utilities/AuthForm.css";
@@ -31,9 +22,6 @@ const AuthForm = (props) => {
 
   let type = formType === "LOGIN" ? "Login" : "Sign up";
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
   useEffect(() => {
     if (actionData) {
       if (actionData.error) {
@@ -48,11 +36,6 @@ const AuthForm = (props) => {
               : "Password is invalid, It must be at least 6 charactor"
           );
         }
-      }
-      if (actionData.idToken) {
-        localStorage.setItem("idToken", JSON.stringify(actionData.idToken));
-        dispatch(authActions.authorizeTheUser());
-        navigate("/profile");
       }
     }
   }, [actionData]);
@@ -135,6 +118,12 @@ export const signUpAction = async ({ request }) => {
     },
     body: JSON.stringify(signUpData)
   });
+
+  if (signUpRequest.ok) {
+    const response = await signUpRequest.json();
+    localStorage.setItem("idToken", JSON.stringify(response.idToken));
+    return redirect("/");
+  }
 
   return signUpRequest;
 };
