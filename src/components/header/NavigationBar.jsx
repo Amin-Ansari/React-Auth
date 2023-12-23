@@ -1,5 +1,5 @@
 //React-Router stuff
-import { NavLink, useRouteLoaderData } from "react-router-dom";
+import { NavLink, useRouteLoaderData, Form } from "react-router-dom";
 
 //assets
 import { TiThMenu } from "react-icons/ti";
@@ -10,7 +10,7 @@ import useLogout from "../../hooks/useLogout";
 //Utileties
 import "../../utilities/NavigationBar.css";
 
-const NavigationBar = (props) => {
+const NavigationBar = () => {
   const rootRouterLoaderData = useRouteLoaderData("root-page");
   const logout = useLogout();
 
@@ -38,16 +38,15 @@ const NavigationBar = (props) => {
             </li>
           )}
           {rootRouterLoaderData && (
-            <button className="nav-item" onClick={logOutHandler}>
-              Log out
-            </button>
+            <Form action="/logout" method="post">
+              <button className="nav-item" onClick={logOutHandler}>
+                Log out
+              </button>
+            </Form>
           )}
         </ul>
       </nav>
-      <button
-        className="off-canvas-toggle-button"
-        onClick={() => props.onVisibilityToggle()}
-      >
+      <button className="off-canvas-toggle-button">
         <TiThMenu />
       </button>
     </>

@@ -16,6 +16,7 @@ import { chengeThePasswordAction } from "../pages/ProfilePage";
 import { checkAuthForLoginPage } from "../Auth/GetToken";
 import { checkAuthForProfilePage } from "../Auth/GetToken";
 import GetToken from "../Auth/GetToken";
+import LogoutAciton from "../pages/logout";
 
 function App() {
   const routes = createBrowserRouter([
@@ -37,6 +38,10 @@ function App() {
           element: <ProfilePage />,
           loader: checkAuthForProfilePage,
           action: chengeThePasswordAction
+        },
+        {
+          path: "/logout",
+          action: LogoutAciton
         }
       ]
     }

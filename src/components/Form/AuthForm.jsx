@@ -122,6 +122,9 @@ export const signUpAction = async ({ request }) => {
   if (signUpRequest.ok) {
     const response = await signUpRequest.json();
     localStorage.setItem("idToken", JSON.stringify(response.idToken));
+    const time = new Date();
+    time.setHours(time.getHours() + 1);
+    localStorage.setItem("expiration", time.toISOString());
     return redirect("/");
   }
 
